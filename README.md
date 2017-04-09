@@ -1,4 +1,5 @@
 # Docker配置开发环境
+请根据自己Docker环境配置.env，请参考.env.default
 
 ## 开发环境
 [nginx](https://hub.docker.com/_/nginx/)(latest)  
