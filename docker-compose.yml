@@ -7,8 +7,8 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - /home/dev/devops/nginx/conf/:/etc/nginx/conf.d/
-            - /home/dev/nginx/log/:/var/log/nginx/
+            - $DEV_DIR/devops/nginx/conf/:/etc/nginx/conf.d/
+            - $DEV_DIR/devops/nginx/log/:/var/log/nginx/
         command: nginx -g 'daemon off;'
         links:
             - php:php
@@ -21,9 +21,9 @@ services:
             - "9000:9000"
             - "9090:9090"
         volumes:
-            - /home/dev/devops/php/conf/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
-            - /home/dev/devops/php/conf/php.ini:/usr/local/etc/php/conf.d/php.ini
-            - /home/dev/:/var/html/
+            - $DEV_DIR/devops/php/conf/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
+            - $DEV_DIR/devops/php/conf/php.ini:/usr/local/etc/php/conf.d/php.ini
+            - $DEV_DIR/:/var/html/
         links:
             - mysql:mysql
         restart: always
@@ -33,7 +33,7 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - /home/dev/devops/mysql/data/:/var/lib/mysql
+            - $DEV_DIR/devops/mysql/data/:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
         command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci

@@ -11,4 +11,6 @@
 > Core ctype curl date dom fileinfo filter ftp gd hash iconv json libxml mbstring mcrypt mysqlnd openssl pcntl pcre PDO pdo_mysql pdo_sqlite Phar posix readline Reflection session SimpleXML SPL sqlite3 standard tokenizer xml xmlreader xmlwriter zlib
 
 ## Windows
-安装Docker Toolbox，虚拟机配置共享文件夹为E:\dev，映射为/home/dev
+安装Docker Toolbox，至少为
+[v17.04.0-ce](https://github.com/docker/toolbox/releases/tag/v17.04.0-ce)，
+虚拟机配置共享文件夹为E:\dev，映射为/home/dev
