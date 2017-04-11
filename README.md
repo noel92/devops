@@ -14,3 +14,8 @@
 安装Docker Toolbox，至少为
 [v17.04.0-ce](https://github.com/docker/toolbox/releases/tag/v17.04.0-ce)，
 虚拟机配置共享文件夹为E:\dev，映射为/home/dev
+
+## TODO
+[Redis](https://hub.docker.com/_/redis/)  
+[Node.js](https://hub.docker.com/_/node/)  
+X-debug  
