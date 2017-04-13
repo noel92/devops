@@ -35,3 +35,7 @@ RUN mv composer.phar /usr/bin/composer.phar \
     && echo "#! /bin/sh\nphp /usr/bin/composer.phar \$*" > /usr/bin/composer \
 	&& chmod +x /usr/bin/composer
 RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
+
+RUN pecl install redis \
+	&& pecl install xdebug \
+	&& docker-php-ext-enable  redis xdebug

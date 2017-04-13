@@ -8,7 +8,7 @@
 
 ## PHP
 支持扩展
-> Core ctype curl date dom fileinfo filter ftp gd hash iconv json libxml mbstring mcrypt mysqlnd openssl pcntl pcre PDO pdo_mysql pdo_sqlite Phar posix readline Reflection session SimpleXML SPL sqlite3 standard tokenizer xml xmlreader xmlwriter zlib
+> Core ctype curl date dom fileinfo filter ftp gd hash iconv json libxml mbstring mcrypt mysqlnd openssl pcntl pcre PDO pdo_mysql pdo_sqlite Phar posix readline Reflection session SimpleXML SPL sqlite3 standard tokenizer xml xmlreader xmlwriter zlib redis xdebug
 
 ## Windows
 安装Docker Toolbox，至少为
@@ -18,4 +18,3 @@
 ## TODO
 [Redis](https://hub.docker.com/_/redis/)  
 [Node.js](https://hub.docker.com/_/node/)  
-X-debug  
