@@ -25,6 +25,8 @@ services:
             - $DEV_DIR/devops/php/conf/php.ini:/usr/local/etc/php/conf.d/php.ini
             - $DEV_DIR/:/var/html/
         links:
+            - memcached:memcached
+            - redis:redis
             - mysql:mysql
         restart: always
     mysql:
@@ -36,5 +38,28 @@ services:
             - $DEV_DIR/devops/mysql/data/:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
-        command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+        command: mysqld
+            --character-set-server=utf8mb4
+            --collation-server=utf8mb4_unicode_ci
+        restart: always
+    memcached:
+        container_name: memcached
+        image: memcached:latest
+        ports:
+            - 11211:11211
+        command: memcached -m $MEMCACHED_MAX_MEMORY
+        restart: always
+    redis:
+        container_name: redis
+        image: redis:latest
+        ports:
+            - 6379:6379
+        volumes:
+            - $DEV_DIR/devops/redis/redis.conf:/usr/local/etc/redis/redis.conf
+        sysctls:
+            - net.core.somaxconn=1024
+        command: /bin/bash -c "sysctl vm.overcommit_memory=1
+            && echo never > /sys/kernel/mm/transparent_hugepage/enabled
+            && redis-server /usr/local/etc/redis/redis.conf"
+        privileged: true
         restart: always
