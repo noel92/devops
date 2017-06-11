@@ -10,7 +10,10 @@
 
 ## PHP
 支持扩展
-> Core ctype curl date dom fileinfo filter ftp gd hash iconv json libxml mbstring mcrypt mysqlnd openssl pcntl pcre PDO pdo_mysql pdo_sqlite Phar posix readline Reflection session SimpleXML SPL sqlite3 standard tokenizer xml xmlreader xmlwriter zlib memcached redis xdebug
+> Core ctype curl date dom fileinfo filter ftp gd hash iconv json libxml mbstring mcrypt mysqlnd openssl pcntl pcre PDO pdo_mysql pdo_sqlite Phar posix readline Reflection session SimpleXML SPL sqlite3 standard tokenizer xml xmlreader xmlwriter zip zlib memcached redis xdebug
+
+支持composer
+>phpunit
 
 ## Windows
 安装Docker Toolbox，至少为

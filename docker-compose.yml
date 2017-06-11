@@ -9,6 +9,7 @@ services:
         volumes:
             - $DEV_DIR/devops/nginx/conf/:/etc/nginx/conf.d/
             - $DEV_DIR/devops/nginx/log/:/var/log/nginx/
+            - $DEV_DIR/:/var/www/html/
         command: nginx -g 'daemon off;'
         links:
             - php:php
@@ -23,7 +24,7 @@ services:
         volumes:
             - $DEV_DIR/devops/php/conf/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
             - $DEV_DIR/devops/php/conf/php.ini:/usr/local/etc/php/conf.d/php.ini
-            - $DEV_DIR/:/var/html/
+            - $DEV_DIR/:/var/www/html/
         links:
             - memcached:memcached
             - redis:redis
