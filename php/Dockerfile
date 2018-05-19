@@ -1,9 +1,4 @@
-FROM php:fpm
-
-RUN sed -i 's|deb.debian.org|mirrors.ustc.edu.cn|g' \
-	/etc/apt/sources.list
-RUN sed -i 's|security.debian.org|mirrors.ustc.edu.cn/debian-security|g' \
- 	/etc/apt/sources.list
+FROM php:7.1-fpm
 
 RUN apt-get update
 RUN apt-get install -y \
@@ -13,7 +8,7 @@ RUN apt-get install -y \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
 	libmcrypt-dev \
-	libpng12-dev \
+	libpng-dev \
 	libmemcached-dev \
 	zlib1g-dev
 

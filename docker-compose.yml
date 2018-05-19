@@ -17,7 +17,7 @@ services:
     php:
         container_name: php
         build: ./php
-        image: php:custom
+        image: php:7.1-custom
         ports:
             - 9000:9000
             - 9090:9090
@@ -32,7 +32,7 @@ services:
         restart: always
     mysql:
         container_name: mysql
-        image: mysql:latest
+        image: mysql:8.0
         ports:
             - 3306:3306
         volumes:
@@ -42,6 +42,7 @@ services:
         command: mysqld
             --character-set-server=utf8mb4
             --collation-server=utf8mb4_unicode_ci
+            --default-authentication-plugin=mysql_native_password
         restart: always
     memcached:
         container_name: memcached
