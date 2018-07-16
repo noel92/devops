@@ -1,67 +1,83 @@
 version: '3'
 services:
-    nginx:
-        container_name: nginx
-        image: nginx:latest
-        ports:
-            - 80:80
-            - 443:443
-        volumes:
-            - $DEV_DIR/devops/nginx/conf/:/etc/nginx/conf.d/
-            - $DEV_DIR/devops/nginx/log/:/var/log/nginx/
-            - $DEV_DIR/:/var/www/html/
-        command: nginx -g 'daemon off;'
-        links:
-            - php:php
-        restart: always
-    php:
-        container_name: php
-        build: ./php
-        image: php:7.1-custom
-        ports:
-            - 9000:9000
-            - 9090:9090
-        volumes:
-            - $DEV_DIR/devops/php/conf/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
-            - $DEV_DIR/devops/php/conf/php.ini:/usr/local/etc/php/conf.d/php.ini
-            - $DEV_DIR/:/var/www/html/
-        links:
-            - memcached:memcached
-            - redis:redis
-            - mysql:mysql
-        restart: always
-    mysql:
-        container_name: mysql
-        image: mysql:8.0
-        ports:
-            - 3306:3306
-        volumes:
-            - $DEV_DIR/devops/mysql/data/:/var/lib/mysql
-        environment:
-            - MYSQL_ROOT_PASSWORD=root
-        command: mysqld
-            --character-set-server=utf8mb4
-            --collation-server=utf8mb4_unicode_ci
-            --default-authentication-plugin=mysql_native_password
-        restart: always
-    memcached:
-        container_name: memcached
-        image: memcached:latest
-        ports:
-            - 11211:11211
-        command: memcached -m $MEMCACHED_MAX_MEMORY
-        restart: always
-    redis:
-        container_name: redis
-        image: redis:latest
-        ports:
-            - 6379:6379
-        volumes:
-            - $DEV_DIR/devops/redis/redis.conf:/usr/local/etc/redis/redis.conf
-        sysctls:
-            - net.core.somaxconn=1024
-        command: /bin/bash -c "sysctl vm.overcommit_memory=1
-            && echo never > /sys/kernel/mm/transparent_hugepage/enabled
-            && redis-server /usr/local/etc/redis/redis.conf"
-        privileged: true
-        restart: always
+  nginx:
+    container_name: nginx
+    image: nginx:1.15-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $DEV_DIR/devops/nginx/conf/:/etc/nginx/conf.d/
+      - $DEV_DIR/devops/nginx/log/:/var/log/nginx/
+      - $DEV_DIR/:/var/www/html/
+    command: nginx -g 'daemon off;'
+    networks:
+      default:
+        aliases:
+          - nginx
+    restart: always
+  php:
+    container_name: php
+    build: ./php
+    image: php:7.1-custom
+    ports:
+      - "9000:9000"
+      - "9090:9090"
+    volumes:
+      - $DEV_DIR/devops/php/conf/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
+      - $DEV_DIR/devops/php/conf/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - $DEV_DIR/:/var/www/html/
+    networks:
+      default:
+        aliases:
+          - php
+    restart: always
+  mysql:
+    container_name: mysql
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    volumes:
+      - $DEV_DIR/devops/mysql/data/:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    command: mysqld
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --default-authentication-plugin=mysql_native_password
+    networks:
+      default:
+        aliases:
+          - mysql
+    restart: always
+  memcached:
+    container_name: memcached
+    image: memcached:1.5-alpine
+    ports:
+      - "11211:11211"
+    command: memcached -m $MEMCACHED_MAX_MEMORY
+    networks:
+      default:
+        aliases:
+          - memcached
+    restart: always
+  redis:
+    container_name: redis
+    image: redis:4-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - $DEV_DIR/devops/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    sysctls:
+      - net.core.somaxconn=1024
+    command: /bin/sh -c "sysctl vm.overcommit_memory=1
+      && echo never > /sys/kernel/mm/transparent_hugepage/enabled
+      && redis-server /usr/local/etc/redis/redis.conf"
+    privileged: true
+    networks:
+      default:
+        aliases:
+          - redis
+    restart: always
+networks:
+  default:
