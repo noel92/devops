@@ -21,3 +21,9 @@ xml xmlreader xmlwriter zip zlib
 安装Docker Toolbox，至少为
 [v17.04.0-ce](https://github.com/docker/toolbox/releases/tag/v17.04.0-ce)，
 虚拟机配置共享文件夹为E:\dev，映射为/home/dev
+
+## MySQL
+请注意mysql/conf.d/my.cnf文件写入权限不能过大。
+
+如果是Linux用户可尝试
+> chmod 0444 my.cnf

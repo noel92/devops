@@ -39,12 +39,10 @@ services:
       - "3306:3306"
     volumes:
       - $DEV_DIR/devops/mysql/data/:/var/lib/mysql
+      - $DEV_DIR/devops/mysql/conf.d/:/etc/mysql/conf.d
     environment:
       - MYSQL_ROOT_PASSWORD=root
     command: mysqld
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_unicode_ci
-      --default-authentication-plugin=mysql_native_password
     networks:
       default:
         aliases:
