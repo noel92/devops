@@ -25,7 +25,7 @@ services:
       - "9090:9090"
     volumes:
       - $DEV_DIR/devops/php/conf/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
-      - $DEV_DIR/devops/php/conf/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - $DEV_DIR/devops/php/conf/php.ini:/usr/local/etc/php/php.ini
       - $DEV_DIR/:/var/www/html/
     networks:
       default:
