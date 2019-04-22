@@ -4,7 +4,7 @@
 ## 开发环境
 [nginx](https://hub.docker.com/_/nginx/)(nginx:1.15-alpine)  
 [php](https://hub.docker.com/_/php/)(基于php:7.1-fpm-alpine)  
-[mysql](https://hub.docker.com/_/mysql/)(8)  
+[mysql](https://hub.docker.com/_/mysql/)(5.6)  
 [redis](https://hub.docker.com/_/redis/)(redis:4-alpine)  
 [memcached](https://hub.docker.com/_/memcached/)(memcached:1.5-alpine)
 
@@ -12,7 +12,7 @@
 支持模块
 > Core ctype curl date dom fileinfo filter ftp gd hash iconv json libxml mbstring
 mcrypt memcached mysqlnd openssl pcntl pcre PDO pdo_mysql pdo_sqlite Phar posix
-readline redis Reflection session SimpleXML SPL sqlite3 standard tokenizer xdebug
+readline redis Reflection session SimpleXML SPL sqlite3 standard tokenizer swoole
 xml xmlreader xmlwriter zip zlib
 
 支持Composer
